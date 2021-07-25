@@ -6,6 +6,8 @@ Servo servo_9;
 int pinL = 6;
 int pinR = 0;
 int pinC = 7;
+int trigPin = 10; // Ultrasonic
+int echoPin = 8;
 
 void setup(){
     Serial.begin(9600); // Begin Serial communication at 9600 baud rate 
