@@ -3,11 +3,11 @@
 
 LiquidCrystal lcd(12, 11, 5, 4, 3, 2);
 Servo servo_9;
-int pinL = 6;
-int pinR = 0;
-int pinC = 7;
-int trigPin = 10; // Ultrasonic
-int echoPin = 8;
+int pinL = 6; // Left button
+int pinR = 0; // Right button
+int pinC = 7; // Center button to confirm
+int trigPin = 10; // Ultrasonic sensor trigger pin
+int echoPin = 8; // Ultrasonic sensor echo pin
 
 void setup(){
     Serial.begin(9600); // Begin Serial communication at 9600 baud rate 
@@ -20,8 +20,6 @@ void setup(){
 }
 
 void loop(){
-    //PIRState = digitalRead(1);
-
     lcd.clear();
     lcd.print("Seleccione modo:");
     lcd.setCursor(0, 1);
