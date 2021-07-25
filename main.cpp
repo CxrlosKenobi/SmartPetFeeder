@@ -26,7 +26,7 @@ void loop(){
     lcd.print("<-Auto  Manual->");
 
     // Manual mode
-    if (digitalRead(pinR == HIGH)){
+    if (digitalRead(pinR == HIGH)){ // If right button is pressed
         lcd.clear();
         do {
             lcd.setCursor(0,0);
@@ -39,7 +39,7 @@ void loop(){
       	            delay(1);
                 }
             }
-        } while(digitalRead(pinL == 0));
+        } while(digitalRead(pinL == 0)); // Do until left button is pressed
     }
 
     // Auto mode
@@ -49,23 +49,28 @@ void loop(){
         lcd.setCursor(0,0);
         lcd.print("Elija intervalo");
         lcd.setCursor(1,0);
-            lcd.print(("<-    " + String(aux) + " hrs   ->"));
+        lcd.print(("<-    " + String(aux) + " hrs   ->"));
+        // "<-    6 hrs   ->"
 
-        if (digitalRead(pinL == 1)){
+        if (digitalRead(pinL == 1)){ // If left button is pressed
             aux -= 1; // aux = 6 -> aux = 5
             lcd.clear();
             lcd.setCursor(0,0);
             lcd.print("Elija intervalo");
             lcd.setCursor(1,0);
             lcd.print(("<-    " + String(aux) + " hrs   ->"));
+            // "<-    5 hrs   ->"
+
         }
-        else if (digitalRead(pinR == 1)){
+        else if (digitalRead(pinR == 1)){ // If right button is pressed
             aux += 1; // aux = 6  -> aux = 7
             lcd.clear();
             lcd.setCursor(0,0);
             lcd.print("Elija intervalo");
             lcd.setCursor(1,0);
             lcd.print(("<-    " + String(aux) + " hrs   ->"));
+            // "<-    7 hrs   ->"
+
         }
         else{
             lcd.clear();
@@ -73,15 +78,17 @@ void loop(){
             lcd.print("Elija intervalo");
             lcd.setCursor(1,0);
             lcd.print(("<-    " + String(aux) + " hrs   ->"));
+            // "<-    6 hrs   ->"
+
         }
-    } while (digitalRead(pinC == 0));
+    } while (digitalRead(pinC == 0)); // Do until center button is pressed
 
     while (true){
-        delay(3600 * aux);
-        if ((1+1)== true){ // Ultrasonic detection = 0
+        delay(3600 * aux); // Delay for the selected interval
+        if ((1+1)== true){ // It should be Ultrasonic detection = 0
             for (int i = 1; i < 360*2; i++){
-                servo_9.write(i); // Servo Position
-                delay(1);
+                servo_9.write(i); // Move servo
+                delay(1); 
             }
         }
     }
